@@ -13,7 +13,7 @@ public class App {
 			var service = new OpenServiceImpl();
 			// 开启多线程同时答题和看视频
 			new Thread(service::autoAnswer).start();
-			new Thread(service::antoWatchVideo).start();
+//			new Thread(service::antoWatchVideo).start();
 		}
 	}
 

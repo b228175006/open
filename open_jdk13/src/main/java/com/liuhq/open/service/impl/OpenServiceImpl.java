@@ -9,18 +9,13 @@ import java.util.Objects;
 import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
+import com.liuhq.open.service.*;
 import org.apache.commons.lang3.StringUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.liuhq.open.model.VideoDTO;
 import com.liuhq.open.model.VideoLearnProgressDTO;
 import com.liuhq.open.model.XapiParmDTO;
-import com.liuhq.open.service.AnswerService;
-import com.liuhq.open.service.CourseService;
-import com.liuhq.open.service.HomeworkService;
-import com.liuhq.open.service.OpenService;
-import com.liuhq.open.service.VideoService;
-import com.liuhq.open.service.WorkService;
 
 public class OpenServiceImpl implements OpenService {
 
@@ -33,6 +28,8 @@ public class OpenServiceImpl implements OpenService {
 	private CourseService courseService = new CourseServiceImpl();
 
 	private VideoService videoService = new VideoServiceImpl();
+
+	private MongoTemplate mt = new MongoTemplateImpl();
 
 	@Override
 	public void autoAnswer() {
@@ -57,6 +54,8 @@ public class OpenServiceImpl implements OpenService {
 					// 获取答案
 					var answerKey = answerService.getAnswerKey(homework.getPaperInfo().getModel().getP3(),
 							item.getI1());
+					//记录题目和答案到mongo
+					mt.add(answerKey);
 					answerQuestionList
 							.add(Map.of("I1", item.getI1(), "I15", answerKey.getI7(), "Sub", new ArrayList<Object>()));
 					// 暂存答案，这个可以不用调用
