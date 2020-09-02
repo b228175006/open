@@ -59,7 +59,7 @@ public class OpenServiceImpl implements OpenService {
 					answerQuestionList
 							.add(Map.of("I1", item.getI1(), "I15", answerKey.getI7(), "Sub", new ArrayList<Object>()));
 					// 暂存答案，这个可以不用调用
-					answerService.stage(homework.getWorkAnswerId(), Map.of("Items", answerQuestionList));
+//					answerService.stage(homework.getWorkAnswerId(), Map.of("Items", answerQuestionList));
 				});
 				// 提交
 				var score = answerService.submit(homework.getWorkAnswerId(), answerQuestionList);
