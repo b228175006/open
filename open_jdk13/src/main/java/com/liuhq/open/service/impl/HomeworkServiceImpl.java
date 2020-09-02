@@ -48,7 +48,8 @@ public class HomeworkServiceImpl implements HomeworkService {
 			request.setAdditionalHeaders(
 					new HashMap<String, String>(Map.of("Accept", "application/json, text/plain, */*", "appType", "OES",
 							"schoolId", LoginUtils.getUserInfo().getUniversityId(), "Sec-Fetch-Mode", "cors",
-							"Authorization", "Bearer " + LoginUtils.getUserInfo().getToken())));
+							"Authorization", "Bearer " + LoginUtils.getUserInfo().getToken(),
+                            "token","618E5BAC4F2C3C269B2EC9AC862981B580FA39FEA5D46CDFBFB824216BE9AC8C6F63D95FF02EE88796D915DA88D759145D9F3960381E98BF99E3A68998FBC1EAE82C8881D1E5DC7C6D298035120DD8B0595C35A43521FCE7F5C8ECA4FAED2AF610E575CF1AEC6B5E88BA8AEACF968F634F66FC81F3A5F9F9A67C0DBDBAEE752213C6EDC54D2D2663D9F2318F8080D05E04BE8F17563013FF3DE1F10768DA0D10BAA6E018DE3BCE86")));
 			var response = client.loadWebResponse(request);
 			var result = response.getContentAsString();
 			// 解析数据
